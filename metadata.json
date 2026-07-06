@@ -1,0 +1,6 @@
+{
+  "name": "LifeGraph AI",
+  "description": "Your AI-powered Digital Identity & Memory System that understands, organizes, and connects everything about your academic and professional journey.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
