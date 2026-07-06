@@ -13,7 +13,8 @@ import {
   Brain,
   Menu,
   X,
-  LogOut
+  LogOut,
+  Dna
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -31,6 +32,8 @@ export default function Sidebar({ currentTab, setCurrentTab, user, onLogout }: S
     { id: 'uploads', label: 'Upload Center', icon: UploadCloud },
     { id: 'graph', label: 'Knowledge Graph', icon: Network },
     { id: 'timeline', label: 'Timeline', icon: GitCommit },
+    { id: 'dna', label: 'Professional DNA', icon: Dna },
+    { id: 'interviewer', label: 'AI Interviewer', icon: Brain },
     { id: 'chat', label: 'AI Chat', icon: MessageSquare },
     { id: 'search', label: 'Smart Search', icon: Search },
     { id: 'resume', label: 'Resume Builder', icon: FileText },

@@ -92,6 +92,24 @@ export default function CommandPalette({
       }
     },
     {
+      label: 'Analyze Professional DNA Matrix',
+      desc: 'Visualize dynamic double-helix trait mapping and credential evidence ledgers.',
+      icon: Sparkles,
+      action: () => {
+        setCurrentTab('dna');
+        onClose();
+      }
+    },
+    {
+      label: 'Simulate Rigorous Board Interview',
+      desc: 'Participate in a SpaceX/Google style hard technical interview.',
+      icon: Terminal,
+      action: () => {
+        setCurrentTab('interviewer');
+        onClose();
+      }
+    },
+    {
       label: 'Navigate to AI Career Insights',
       desc: 'Verify gap mitigation roadmaps and role predictions.',
       icon: Compass,

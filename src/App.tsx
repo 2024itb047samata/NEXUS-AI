@@ -25,6 +25,8 @@ import CareerInsights from './components/CareerInsights';
 import SettingsView from './components/Settings';
 import CommandPalette from './components/CommandPalette';
 import PresentationMode from './components/PresentationMode';
+import ProfessionalDNA from './components/ProfessionalDNA';
+import AIInterviewer from './components/AIInterviewer';
 
 export default function App() {
   const [user, setUser] = useState<any>(null);
@@ -169,6 +171,10 @@ export default function App() {
         return <KnowledgeGraph documents={documents} />;
       case 'timeline':
         return <TimelineView documents={documents} />;
+      case 'dna':
+        return <ProfessionalDNA documents={documents} />;
+      case 'interviewer':
+        return <AIInterviewer documents={documents} />;
       case 'chat':
         return <AIChat documents={documents} />;
       case 'search':

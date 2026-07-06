@@ -2,7 +2,7 @@ import express from 'express';
 import path from 'path';
 import { createServer as createViteServer } from 'vite';
 import { db } from './server/db';
-import { processDocumentContent, performSemanticSearch, executeRAGChat } from './server/gemini';
+import { processDocumentContent, performSemanticSearch, executeRAGChat, generateInterviewQuestion, rateInterviewAnswer } from './server/gemini';
 import { DocumentItem, DocumentCategory, VersionItem, GraphNode, GraphEdge, TimelineEvent, ChatMessage, CareerInsights } from './src/types';
 
 const app = express();
@@ -323,6 +323,33 @@ app.get('/api/timeline', (req, res) => {
     return parseInt(a.year) - parseInt(b.year);
   });
   res.json(timeline);
+});
+
+// --- AI Interviewer ---
+app.post('/api/interview/generate', async (req, res) => {
+  try {
+    const { history } = req.body;
+    const documents = db.get().documents;
+    const questionData = await generateInterviewQuestion(documents, history || []);
+    res.json(questionData);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message || 'Error generating interview question' });
+  }
+});
+
+app.post('/api/interview/rate', async (req, res) => {
+  try {
+    const { question, answer } = req.body;
+    if (!question || !answer) {
+      res.status(400).json({ error: 'Question and answer are required' });
+      return;
+    }
+    const documents = db.get().documents;
+    const ratingData = await rateInterviewAnswer(question, answer, documents);
+    res.json(ratingData);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message || 'Error rating answer' });
+  }
 });
 
 // --- AI Chat Assistant (RAG Memory) ---
